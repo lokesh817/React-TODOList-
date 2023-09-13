@@ -1,0 +1,30 @@
+.checked{
+  background-color: #c0f0c0;
+}
+.completed {
+  color: rgb(235, 230, 241);
+  background-color: rgb(153, 177, 93); /* Change this to the desired background color for checked items */
+}
+.innerdiv{
+    display: flex;
+    align-items: flex-start;
+    text-align: start;
+    
+}
+.list-title{
+  padding-left: 2%;
+  width: 70%;
+
+}
+.buttons{
+  display: flex;
+  width: 20%;
+}
+.bottom-buttons{
+  display: flexbox;
+  align-items: baseline;
+  justify-content: space-evenly;
+}
+.line-through{
+  text-decoration-line: line-through;
+}
