@@ -39,16 +39,23 @@ function List({ items,onUpdateItem ,onDeleteItem}) {
   const handleCancelEdit = () => {
     setEditableItem(null);
   };
+  
   const markSelectedItemsAsComplete = () => {
+    // Create a copy of the items array with updated completion status
     const updatedItems = items.map((item) => ({
       ...item,
       completed: checkedItems[item.id] ? true : item.completed,
     }));
-    setCheckedItems({}); // Clear the checked items
-    setShowCompleteButton(false);
-    // Update the state with the modified items
-    // setItems(updatedItems);
+  
+    // Clear the checked items
+    setCheckedItems({});
+  
+    // Update the parent component with the modified items
+    onUpdateItem(updatedItems);
+    console.log(items);
   };
+  
+  
   const handleSaveClick = (itemId, newTitle) => {
     // Update the title of the item in the state
     const updatedItems = items.map((item) => {
@@ -118,14 +125,17 @@ function List({ items,onUpdateItem ,onDeleteItem}) {
     <div>
       <ListGroup>
         {items.map((item) => (
+          
           <ListGroup.Item
             key={item.id}
+            
             className={`${checkedItems[item.id] ? 'checked' : ''} ${
               item.completed ? 'completed' : ''
             } ${editableItem === item.id ? 'editable' : ''}`}
           >
             <div className='innerdiv'>
               <div className="checkbox ">
+                
                 <FormCheckInput
                   checked={checkedItems[item.id] || false}
                   onChange={() => toggleItemSelection(item.id)}
