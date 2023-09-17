@@ -34,7 +34,6 @@ function List({ items,onUpdateItem ,onDeleteItem}) {
 
   const handleEditClick = (itemId) => {
     setEditableItem(itemId);
-
   };
   const handleCancelEdit = () => {
     setEditableItem(null);
@@ -64,7 +63,7 @@ function List({ items,onUpdateItem ,onDeleteItem}) {
       }
       return item;
     });
-  
+    console.log(updatedItems);
     // Clear the editable item state
     setEditableItem(null);
   
@@ -80,7 +79,8 @@ function List({ items,onUpdateItem ,onDeleteItem}) {
       .then((response) => response.json())
       .then((data) => {
         // Update the parent component with the modified items
-        onUpdateItem(updatedItems.find((item) => item.id === itemId));
+        console.log("edit item:",data);
+        onUpdateItem(updatedItems.filter(item=> item.id ===itemId));
       })
       .catch((error) => {
         console.error(`Error updating item with ID ${itemId}: ${error}`);
